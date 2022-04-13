@@ -1,7 +1,7 @@
 {
-  "name": "phaser-template",
-  "version": "1.0.0",
-  "description": "Template to build a game with phaser 3",
+  "name": "pixel-puzzle",
+  "version": "0.1.0",
+  "description": "Picross / Nonoramm game",
   "main": "index.html",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pixel-fabian/phaser-blueprint.git"
+    "url": "git+https://github.com/pixel-fabian/pixel-puzzle.git"
   },
   "keywords": [
     "phaser",
@@ -20,11 +20,11 @@
     "html5-game"
   ],
   "author": "pixel-fabian",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/pixel-fabian/phaser-blueprint/issues"
+    "url": "https://github.com/pixel-fabian/pixel-puzzle/issues"
   },
-  "homepage": "https://github.com/pixel-fabian/phaser-blueprint#readme",
+  "homepage": "https://github.com/pixel-fabian/pixel-puzzle#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
