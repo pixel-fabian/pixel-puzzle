@@ -10,9 +10,6 @@ const config: Phaser.Types.Core.GameConfig = {
   height: 600,
   parent: 'game',
   scene: [SceneLoad, SceneMenu, SceneGame],
-  render: {
-    pixelArt: true
-  }
 };
 
 window.onload = () => {
