@@ -69,4 +69,8 @@ export default class extends Phaser.GameObjects.Rectangle {
       this.filled = true;
     }
   }
+
+  getFilled() {
+    return this.filled;
+  }
 }
