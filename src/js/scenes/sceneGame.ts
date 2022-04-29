@@ -17,10 +17,11 @@ export default class SceneGame extends Phaser.Scene {
   preload(): void {}
 
   create(): void {
-    const camera = this.cameras.add(0, 0, 800, 600);
     // background
+    const camera = this.cameras.add(0, 0, 800, 600);
     camera.setBackgroundColor('rgba(50, 50, 50, 1)');
     this._createFields();
+    this.input.mouse.disableContextMenu();
   }
 
   update(): void {}
@@ -48,4 +49,3 @@ export default class SceneGame extends Phaser.Scene {
     }
   }
 }
-

@@ -18,10 +18,18 @@ export default class extends Phaser.GameObjects.Rectangle {
     this._setFilled();
   }
 
-  onPressField() {
+  onPressFieldSolveFilled() {
     if (this.solved) return;
     if (this.filled) {
       this.setFillStyle(this.colorFilled);
+      this.solved = true;
+    }
+  }
+
+  onPressFieldSolveEmpty() {
+    if (this.solved) return;
+    if (!this.filled) {
+      this.setFillStyle(this.colorEmpty);
       this.solved = true;
     }
   }
@@ -37,8 +45,12 @@ export default class extends Phaser.GameObjects.Rectangle {
         this.setFillStyle(this.colorDefault);
       }
     });
-    this.on('pointerdown', () => {
-      this.onPressField();
+    this.on('pointerdown', (pointer) => {
+      if (pointer.rightButtonDown()) {
+        this.onPressFieldSolveFilled();
+      } else {
+        this.onPressFieldSolveEmpty();
+      }
     });
   }
 
@@ -50,4 +62,3 @@ export default class extends Phaser.GameObjects.Rectangle {
     }
   }
 }
-
