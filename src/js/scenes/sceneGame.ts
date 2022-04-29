@@ -34,8 +34,8 @@ export default class SceneGame extends Phaser.Scene {
     const size = 50;
     const number = 10;
     const fields = [];
-    let x = 20;
-    let y = 20;
+    let x = 50;
+    let y = 50;
 
     for (let row = 0; row < number; row++) {
       for (let column = 0; column < number; column++) {
@@ -44,7 +44,7 @@ export default class SceneGame extends Phaser.Scene {
 
         x += size;
       }
-      x = 20;
+      x = 50;
       y += size;
     }
   }
