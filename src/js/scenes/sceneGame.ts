@@ -6,10 +6,15 @@ export default class SceneGame extends Phaser.Scene {
   private amountFields = 10;
   private fieldSize = 50;
   private fields = [];
-  public counts = {
+  private counts = {
     totalFilled: 0,
     curFilled: 0,
     curErrors: 0,
+  };
+  private ui = {
+    progressText: null,
+    progressNumber: 0,
+    errorText: null,
   };
 
   constructor() {
@@ -34,6 +39,8 @@ export default class SceneGame extends Phaser.Scene {
     this._createColumnNumbers();
     this._createRowNumbers();
     this.input.mouse.disableContextMenu();
+    this._updateErrors();
+    this._updateProgress();
   }
 
   update(): void {}
@@ -50,6 +57,9 @@ export default class SceneGame extends Phaser.Scene {
       this.fields.push([]);
       for (let column = 0; column < this.amountFields; column++) {
         const field = new Field(this, x, y, this.fieldSize);
+        if (field.getFilled()) {
+          this.counts.totalFilled++;
+        }
         this.fields[row].push(field);
 
         x += this.fieldSize;
@@ -121,6 +131,42 @@ export default class SceneGame extends Phaser.Scene {
       y = 20;
       x += this.fieldSize;
     }
+  }
+
+  addError() {
+    this.counts.curErrors++;
+    this._updateErrors();
+  }
+
+  addFilled() {
+    this.counts.curFilled++;
+    this._updateProgress();
+  }
+
+  _updateErrors() {
+    if (!this.ui.errorText) {
+      this.ui.errorText = this.add.text(0, 0, '', {
+        fontFamily: 'Nunito',
+        color: '#fff',
+        fontSize: '16px',
+      });
+    }
+    this.ui.errorText.setText(`Errors: ${this.counts.curErrors}`);
+  }
+
+  _updateProgress() {
+    this.ui.progressNumber = Phaser.Math.FloorTo(
+      (this.counts.curFilled / this.counts.totalFilled) * 100,
+    );
+
+    if (!this.ui.progressText) {
+      this.ui.progressText = this.add.text(80, 0, '', {
+        fontFamily: 'Nunito',
+        color: '#fff',
+        fontSize: '16px',
+      });
+    }
+    this.ui.progressText.setText(`Progress: ${this.ui.progressNumber}%`);
   }
 }
 

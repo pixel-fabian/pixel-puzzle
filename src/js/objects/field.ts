@@ -25,10 +25,12 @@ export default class extends Phaser.GameObjects.Rectangle {
     if (this.filled) {
       this.setFillStyle(this.colorFilled);
       this.solved = true;
+      this.scene.addFilled();
     } else {
       this.setFillStyle(this.colorEmpty);
       this._setError(this.x, this.y);
       this.error = true;
+      this.scene.addError();
     }
   }
 
@@ -41,6 +43,8 @@ export default class extends Phaser.GameObjects.Rectangle {
       this.setFillStyle(this.colorFilled);
       this._setError(this.x, this.y);
       this.error = true;
+      this.scene.addFilled();
+      this.scene.addError();
     }
   }
 
