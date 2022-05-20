@@ -88,34 +88,32 @@ export default class SceneGame extends Phaser.Scene {
 
   _createColumnNumbers() {
     let x = 100;
-    let y = 40;
-    console.log(this.fields);
+    let y = 20;
 
     for (let column = 0; column < this.fields[0].length; column++) {
-      let numberRow = 0;
+      let numberColumn = 0;
       for (let row = 0; row < this.fields.length; row++) {
         if (this.fields[row][column].getFilled()) {
           // if filled: Add to number
-          numberRow++;
+          numberColumn++;
         }
         if (
-          numberRow > 0 &&
-          (!this.fields[row][column].getFilled() ||
-            !this.fields[row][column + 1])
+          numberColumn > 0 &&
+          (!this.fields[row][column].getFilled() || !this.fields[row + 1])
         ) {
-          // if empty or last one in row: Display number
+          // if empty or last one in column: Display number
           this.add
-            .text(x, y, `${numberRow}`, {
+            .text(x, y, `${numberColumn}`, {
               fontFamily: 'Nunito',
               color: '#fff',
               fontSize: '16px',
             })
             .setOrigin(0.5);
-          y += 10;
-          numberRow = 0;
+          y += 17;
+          numberColumn = 0;
         }
       }
-      y = 40;
+      y = 20;
       x += this.fieldSize;
     }
   }
