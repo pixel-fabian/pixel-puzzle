@@ -6,6 +6,11 @@ export default class SceneGame extends Phaser.Scene {
   private amountFields = 10;
   private fieldSize = 50;
   private fields = [];
+  public counts = {
+    totalFilled: 0,
+    curFilled: 0,
+    curErrors: 0,
+  };
 
   constructor() {
     super({
@@ -101,7 +106,7 @@ export default class SceneGame extends Phaser.Scene {
           numberColumn > 0 &&
           (!this.fields[row][column].getFilled() || !this.fields[row + 1])
         ) {
-          // if empty or last one in column: Display number
+          // if empty or last one in row: Display number
           this.add
             .text(x, y, `${numberColumn}`, {
               fontFamily: 'Nunito',

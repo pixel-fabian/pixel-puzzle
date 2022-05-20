@@ -26,7 +26,8 @@ export default class extends Phaser.GameObjects.Rectangle {
       this.setFillStyle(this.colorFilled);
       this.solved = true;
     } else {
-      this.setFillStyle(this.colorError);
+      this.setFillStyle(this.colorEmpty);
+      this._setError(this.x, this.y);
       this.error = true;
     }
   }
@@ -37,7 +38,8 @@ export default class extends Phaser.GameObjects.Rectangle {
       this.setFillStyle(this.colorEmpty);
       this.solved = true;
     } else {
-      this.setFillStyle(this.colorError);
+      this.setFillStyle(this.colorFilled);
+      this._setError(this.x, this.y);
       this.error = true;
     }
   }
@@ -70,7 +72,16 @@ export default class extends Phaser.GameObjects.Rectangle {
     }
   }
 
+  _setError(x, y) {
+    this.scene.add.text(x + 15, y + 7, 'X', {
+      fontFamily: 'Nunito',
+      color: '#f00',
+      fontSize: '28px',
+    });
+  }
+
   getFilled() {
     return this.filled;
   }
 }
+
