@@ -1,4 +1,6 @@
-export default class extends Phaser.GameObjects.Rectangle {
+import SceneGame from '../scenes/sceneGame';
+
+export default class Field extends Phaser.GameObjects.Rectangle {
   private colorDefault = 0x222222;
   private colorBorder = 0xffffff;
   private colorHover = 0x444444;
@@ -8,8 +10,9 @@ export default class extends Phaser.GameObjects.Rectangle {
   private filled = false;
   private solved = false;
   private error = false;
+  public scene: SceneGame;
 
-  constructor(scene, x, y, size) {
+  constructor(scene: SceneGame, x: number, y: number, size: number) {
     super(scene, x, y, size, size);
     scene.add.existing(this);
     this.setOrigin(0)
