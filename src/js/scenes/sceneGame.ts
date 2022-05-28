@@ -5,7 +5,7 @@ import Field from '../objects/field';
 import Numbers from '../objects/numbers';
 export default class SceneGame extends Phaser.Scene {
   private amountFields = 10;
-  private fieldSize = 50;
+  private fieldSize = 45;
   private fields = [];
   private counts = {
     totalFilled: 0,
@@ -52,7 +52,7 @@ export default class SceneGame extends Phaser.Scene {
 
   _createFields() {
     let x = 75;
-    let y = 75;
+    let y = 120;
 
     for (let row = 0; row < this.amountFields; row++) {
       this.fields.push([]);
@@ -72,7 +72,7 @@ export default class SceneGame extends Phaser.Scene {
 
   _createRowNumbers() {
     let x = 65;
-    let y = 50 + this.fieldSize * this.fields.length;
+    let y = 95 + this.fieldSize * this.fields.length;
 
     for (let row = this.fields.length - 1; row >= 0; row--) {
       let numberRow = 0;
@@ -105,7 +105,7 @@ export default class SceneGame extends Phaser.Scene {
 
   _createColumnNumbers() {
     let x = 50 + this.fieldSize * this.fields.length;
-    let y = 65;
+    let y = 105;
 
     for (let column = this.fields[0].length - 1; column >= 0; column--) {
       let numberColumn = 0;
@@ -130,7 +130,7 @@ export default class SceneGame extends Phaser.Scene {
           numberColumn = 0;
         }
       }
-      y = 65;
+      y = 105;
       x -= this.fieldSize;
     }
   }
