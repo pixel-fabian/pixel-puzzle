@@ -17,6 +17,7 @@ export default class SceneGame extends Phaser.Scene {
     progressNumber: 0,
     errorText: null,
   };
+  public gameOver = false;
 
   constructor() {
     super({
@@ -138,11 +139,13 @@ export default class SceneGame extends Phaser.Scene {
   addError() {
     this.counts.curErrors++;
     this._updateErrors();
+    this._checkWin();
   }
 
   addFilled() {
     this.counts.curFilled++;
     this._updateProgress();
+    this._checkWin();
   }
 
   _updateErrors() {
@@ -169,6 +172,30 @@ export default class SceneGame extends Phaser.Scene {
       });
     }
     this.ui.progressText.setText(`Progress: ${this.ui.progressNumber}%`);
+  }
+
+  _checkWin() {
+    if (this.counts.totalFilled === this.counts.curFilled) {
+      if (this.counts.curErrors === 0) {
+        this.time.addEvent({
+          delay: 300,
+          callback: () => {
+            for (let row = 0; row < this.fields.length; row++) {
+              for (let column = 0; column < this.fields[row].length; column++) {
+                if (this.fields[row][column].getFilled()) {
+                  this.fields[row][column].changeColorRnd();
+                }
+              }
+            }
+          },
+          loop: true,
+        });
+      }
+      this.gameOver = true;
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

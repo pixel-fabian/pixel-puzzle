@@ -63,6 +63,7 @@ export default class Field extends Phaser.GameObjects.Rectangle {
       }
     });
     this.on('pointerdown', (pointer) => {
+      if (this.scene.gameOver) return;
       if (pointer.rightButtonDown()) {
         this.onPressFieldSolveEmpty();
       } else {
@@ -89,6 +90,12 @@ export default class Field extends Phaser.GameObjects.Rectangle {
 
   getFilled() {
     return this.filled;
+  }
+
+  changeColorRnd() {
+    const color = new Phaser.Display.Color();
+    color.random(50);
+    this.setFillStyle(color.color);
   }
 }
 
