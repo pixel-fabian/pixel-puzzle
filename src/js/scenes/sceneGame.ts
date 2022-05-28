@@ -1,3 +1,4 @@
+/* eslint-disable for-direction */
 import 'phaser';
 import SCENES from '../constants/SceneKeys';
 import Field from '../objects/field';
@@ -70,11 +71,12 @@ export default class SceneGame extends Phaser.Scene {
   }
 
   _createRowNumbers() {
-    let x = 40;
-    let y = 100;
-    for (let row = 0; row < this.fields.length; row++) {
+    let x = 65;
+    let y = 50 + this.fieldSize * this.fields.length;
+
+    for (let row = this.fields.length - 1; row >= 0; row--) {
       let numberRow = 0;
-      for (let column = 0; column < this.fields[row].length; column++) {
+      for (let column = this.fields[row].length - 1; column >= 0; column--) {
         if (this.fields[row][column].getFilled()) {
           // if filled: Add to number
           numberRow++;
@@ -82,7 +84,7 @@ export default class SceneGame extends Phaser.Scene {
         if (
           numberRow > 0 &&
           (!this.fields[row][column].getFilled() ||
-            !this.fields[row][column + 1])
+            !this.fields[row][column - 1])
         ) {
           // if empty or last one in column: Display number
           this.add
@@ -92,29 +94,29 @@ export default class SceneGame extends Phaser.Scene {
               fontSize: '16px',
             })
             .setOrigin(0.5);
-          x += 10;
+          x -= 10;
           numberRow = 0;
         }
       }
-      x = 40;
-      y += this.fieldSize;
+      x = 65;
+      y -= this.fieldSize;
     }
   }
 
   _createColumnNumbers() {
-    let x = 100;
-    let y = 20;
+    let x = 50 + this.fieldSize * this.fields.length;
+    let y = 65;
 
-    for (let column = 0; column < this.fields[0].length; column++) {
+    for (let column = this.fields[0].length - 1; column >= 0; column--) {
       let numberColumn = 0;
-      for (let row = 0; row < this.fields.length; row++) {
+      for (let row = this.fields.length - 1; row >= 0; row--) {
         if (this.fields[row][column].getFilled()) {
           // if filled: Add to number
           numberColumn++;
         }
         if (
           numberColumn > 0 &&
-          (!this.fields[row][column].getFilled() || !this.fields[row + 1])
+          (!this.fields[row][column].getFilled() || !this.fields[row - 1])
         ) {
           // if empty or last one in row: Display number
           this.add
@@ -124,12 +126,12 @@ export default class SceneGame extends Phaser.Scene {
               fontSize: '16px',
             })
             .setOrigin(0.5);
-          y += 17;
+          y -= 17;
           numberColumn = 0;
         }
       }
-      y = 20;
-      x += this.fieldSize;
+      y = 65;
+      x -= this.fieldSize;
     }
   }
 
