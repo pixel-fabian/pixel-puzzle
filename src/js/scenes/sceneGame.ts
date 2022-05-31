@@ -6,6 +6,8 @@ import Number from '../objects/number';
 export default class SceneGame extends Phaser.Scene {
   private amountFields = 10;
   private fieldSize = 45;
+  private marginTop = 120;
+  private marginLeft = 75;
   private fields = [];
   private counts = {
     totalFilled: 0,
@@ -38,6 +40,7 @@ export default class SceneGame extends Phaser.Scene {
     const camera = this.cameras.add(0, 0, 800, 600);
     camera.setBackgroundColor('rgba(50, 50, 50, 1)');
     this._createFields();
+    this._createLines();
     this._createColumnNumbers();
     this._createRowNumbers();
     this.input.mouse.disableContextMenu();
@@ -52,8 +55,8 @@ export default class SceneGame extends Phaser.Scene {
   //////////////////////////////////////////////////
 
   _createFields() {
-    let x = 75;
-    let y = 120;
+    let x = this.marginLeft;
+    let y = this.marginTop;
 
     for (let row = 0; row < this.amountFields; row++) {
       this.fields.push([]);
@@ -66,8 +69,33 @@ export default class SceneGame extends Phaser.Scene {
 
         x += this.fieldSize;
       }
-      x = 75;
+      x = this.marginLeft;
       y += this.fieldSize;
+    }
+  }
+
+  _createLines() {
+    const fieldsBetween = 5;
+    const amountLines = this.amountFields / fieldsBetween - 1;
+    // horizontal
+    for (let index = 1; index <= amountLines; index++) {
+      const x = this.marginLeft + index * fieldsBetween * this.fieldSize;
+      const startY = this.marginTop;
+      const endY = this.marginTop + this.amountFields * this.fieldSize;
+      this.add
+        .graphics()
+        .lineStyle(1, 0xff0000, 0.3)
+        .lineBetween(x, startY, x, endY);
+    }
+    // vertical
+    for (let index = 1; index <= amountLines; index++) {
+      const y = this.marginTop + index * fieldsBetween * this.fieldSize;
+      const startX = this.marginLeft;
+      const endX = this.marginLeft + this.amountFields * this.fieldSize;
+      this.add
+        .graphics()
+        .lineStyle(1, 0xff0000, 0.3)
+        .lineBetween(startX, y, endX, y);
     }
   }
 
