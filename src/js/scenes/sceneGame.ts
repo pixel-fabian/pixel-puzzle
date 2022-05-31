@@ -2,7 +2,7 @@
 import 'phaser';
 import SCENES from '../constants/SceneKeys';
 import Field from '../objects/field';
-import Numbers from '../objects/numbers';
+import Number from '../objects/number';
 export default class SceneGame extends Phaser.Scene {
   private amountFields = 10;
   private fieldSize = 45;
@@ -88,13 +88,7 @@ export default class SceneGame extends Phaser.Scene {
             !this.fields[row][column - 1])
         ) {
           // if empty or last one in column: Display number
-          this.add
-            .text(x, y, `${numberRow}`, {
-              fontFamily: 'Nunito',
-              color: '#fff',
-              fontSize: '16px',
-            })
-            .setOrigin(0.5);
+          new Number(this, x, y, `${numberRow}`, {}).setOrigin(0.5);
           x -= 10;
           numberRow = 0;
         }
@@ -120,13 +114,7 @@ export default class SceneGame extends Phaser.Scene {
           (!this.fields[row][column].getFilled() || !this.fields[row - 1])
         ) {
           // if empty or last one in row: Display number
-          this.add
-            .text(x, y, `${numberColumn}`, {
-              fontFamily: 'Nunito',
-              color: '#fff',
-              fontSize: '16px',
-            })
-            .setOrigin(0.5);
+          new Number(this, x, y, `${numberColumn}`, {}).setOrigin(0.5);
           y -= 17;
           numberColumn = 0;
         }
@@ -198,4 +186,3 @@ export default class SceneGame extends Phaser.Scene {
     }
   }
 }
-

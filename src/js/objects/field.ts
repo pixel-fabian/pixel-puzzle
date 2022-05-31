@@ -1,4 +1,5 @@
 import SceneGame from '../scenes/sceneGame';
+import Number from '../objects/number';
 
 export default class Field extends Phaser.GameObjects.Rectangle {
   private colorDefault = 0x222222;
@@ -10,6 +11,7 @@ export default class Field extends Phaser.GameObjects.Rectangle {
   private filled = false;
   private solved = false;
   private error = false;
+  private numbers: Number[];
   public scene: SceneGame;
 
   constructor(scene: SceneGame, x: number, y: number, size: number) {
@@ -97,5 +99,12 @@ export default class Field extends Phaser.GameObjects.Rectangle {
     color.random(50);
     this.setFillStyle(color.color);
   }
-}
 
+  addNumber(number: Number) {
+    this.numbers.push(number);
+  }
+
+  checkNumbers() {
+    this.numbers.forEach((number) => number.checkIfFieldsFilled);
+  }
+}
