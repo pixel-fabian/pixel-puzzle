@@ -1,9 +1,9 @@
 /* eslint-disable for-direction */
-import 'phaser';
-import SCENES from '../constants/SceneKeys';
-import Field from '../objects/field';
-import Number from '../objects/number';
-export default class SceneGame extends Phaser.Scene {
+import { SCENES } from '../constants';
+import Field from '../objects/Field';
+import Number from '../objects/Number';
+
+export default class GameScene extends Phaser.Scene {
   private amountFields = 10;
   private fieldSize = 45;
   private marginTop = 120;

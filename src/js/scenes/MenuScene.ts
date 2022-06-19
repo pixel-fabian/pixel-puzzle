@@ -1,8 +1,6 @@
-import 'phaser';
-import SCENES from '../constants/SceneKeys';
-import TEXTURES from '../constants/TextureKeys';
+import { SCENES } from '../constants';
 
-export default class SceneMenu extends Phaser.Scene {
+export default class MenuScene extends Phaser.Scene {
   constructor() {
     super({
       key: SCENES.MENU,
@@ -52,4 +50,3 @@ export default class SceneMenu extends Phaser.Scene {
     });
   }
 }
-

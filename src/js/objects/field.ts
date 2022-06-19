@@ -1,5 +1,5 @@
-import SceneGame from '../scenes/sceneGame';
-import Number from '../objects/number';
+import GameScene from '../scenes/GameScene';
+import Number from './Number';
 
 export default class Field extends Phaser.GameObjects.Rectangle {
   private colorDefault = 0x222222;
@@ -12,9 +12,9 @@ export default class Field extends Phaser.GameObjects.Rectangle {
   private solved = false;
   private error = false;
   private numbers: Number[];
-  public scene: SceneGame;
+  public scene: GameScene;
 
-  constructor(scene: SceneGame, x: number, y: number, size: number) {
+  constructor(scene: GameScene, x: number, y: number, size: number) {
     super(scene, x, y, size, size);
     scene.add.existing(this);
     this.setOrigin(0)

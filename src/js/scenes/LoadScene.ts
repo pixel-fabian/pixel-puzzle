@@ -1,7 +1,6 @@
-import 'phaser';
-import SCENES from '../constants/SceneKeys';
-import TEXTURES from '../constants/TextureKeys';
-export default class SceneLoad extends Phaser.Scene {
+import { SCENES } from '../constants';
+
+export default class LoadScene extends Phaser.Scene {
   constructor() {
     super({
       key: SCENES.LOAD,

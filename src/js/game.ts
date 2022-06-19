@@ -1,7 +1,8 @@
 import 'phaser';
-import SceneLoad from './scenes/sceneLoad';
-import SceneMenu from './scenes/sceneMenu';
-import SceneGame from './scenes/sceneGame';
+import LoadScene from './scenes/LoadScene';
+import MenuScene from './scenes/MenuScene';
+import GameScene from './scenes/GameScene';
+import UiScene from './scenes/UiScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO, // WebGL if available
@@ -9,7 +10,7 @@ const config: Phaser.Types.Core.GameConfig = {
   width: 800,
   height: 600,
   parent: 'game',
-  scene: [SceneLoad, SceneMenu, SceneGame],
+  scene: [LoadScene, MenuScene, GameScene, UiScene],
 };
 
 window.onload = () => {
